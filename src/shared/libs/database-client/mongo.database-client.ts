@@ -1,6 +1,6 @@
 import * as Mongoose from 'mongoose';
 import { setTimeout } from 'node:timers/promises';
-import {inject, injectable} from 'inversify';
+import { inject, injectable } from 'inversify';
 import { Component } from '../../types/index.js';
 import { Logger } from '../logger/index.js';
 import { DatabaseClient } from './database-client.inteface.js';
@@ -22,7 +22,7 @@ export class MongoDatabaseClient implements DatabaseClient {
     return this.isConnected;
   }
 
-  public connect = async(uri: string): Promise<void> => {
+  public connect = async (uri: string): Promise<void> => {
     if (this.isConnectedToDatabase()) {
       throw new Error('Database client already conntected.');
     }
@@ -31,19 +31,20 @@ export class MongoDatabaseClient implements DatabaseClient {
 
     let attempt = 0;
     while (attempt < RETRY_COUNT) {
+      console.log(uri);
       try {
         this.mongoose = await Mongoose.connect(uri);
         this.isConnected = true;
         this.logger.info('Database conntection estableshed.');
         return;
-      } catch(err) {
+      } catch (err) {
         attempt++;
         this.logger.error(`Filed to conntected to the database. Attempt: ${attempt}`, err as Error);
         await setTimeout(RETRY_TIMEOUT);
       }
-
-      throw new Error(`Unable to establish conntection database after ${RETRY_COUNT}`);
     }
+
+    throw new Error(`Unable to establish conntection database after ${RETRY_COUNT}`);
   }
 
   public disconnect = async (): Promise<void> => {
