@@ -39,7 +39,7 @@ export class RestApplication {
 
     this.logger.info("Creating User to database.")
     const user = await UserModel.create({
-      email: 'test@email.local',
+      email: 'tesst@email.local',
       avatarPath: 'keks.jpg',
       firstname: 'Keks',
       lastname: 'Unknown'
