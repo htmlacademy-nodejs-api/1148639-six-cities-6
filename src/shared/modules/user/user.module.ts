@@ -11,9 +11,18 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
+    match: [/^([\w-\\.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'Email is incorrect'],
+    require: true,
   },
-  avatarPath: String,
-  firstname: String,
+  avatarPath: {
+    type: String,
+    minLength: [5, 'Min length for avatar path is 5']
+  },
+  firstname: {
+    type: String,
+    require: true,
+    minLength: [2, 'Min length for firstname is 2']
+  },
   lastname: String,
 }, {timestamps: true});
 

@@ -39,11 +39,15 @@ export class RestApplication {
 
     this.logger.info("Creating User to database.")
     const user = await UserModel.create({
-      email: 'tesst@email.local',
+      email: 'tesst@email.lcal',
       avatarPath: 'keks.jpg',
       firstname: 'Keks',
       lastname: 'Unknown'
      });
+
+     const error = user.validateSync();
+     console.log(error);
+
      this.logger.info("Created User to database.");
     };
 }
