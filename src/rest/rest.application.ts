@@ -7,7 +7,7 @@ import { RestConfig } from '../shared/config/rest.config.js';
 import { DatabaseClient } from '../shared/libs/database-client/index.js';
 import { getMongoURI } from '../shared/helpers/database.js';
 
-import { UserModel } from '../shared/modules/user/inde.js';
+import { UserModel } from '../shared/modules/user/index.js';
 
 @injectable()
 export class RestApplication {
