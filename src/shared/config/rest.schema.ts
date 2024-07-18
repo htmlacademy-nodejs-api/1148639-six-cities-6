@@ -18,7 +18,7 @@ export const configRestSchama = convict<RestSchema>({
     doc: 'Port for incoming connections',
     format: 'port',
     env: 'PORT',
-    default: null
+    default: 4000
   },
   SALT: {
     doc: 'Salt for password hash',
